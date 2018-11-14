@@ -1,0 +1,16 @@
+---
+- hosts: 192.168.129.189
+  user: root
+  become: yes
+  tasks:
+  - name: pull image
+    docker_image:
+      name: tutum/hello-world
+      state: present
+
+  - name: Create container
+    docker_container:
+      name: tutum-container
+      image: tutum/hello-world
+      ports:
+        - "8080:8080"
